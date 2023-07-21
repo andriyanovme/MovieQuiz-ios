@@ -50,7 +50,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
     private func showAnswerResult(isCorrect: Bool) {
         if isCorrect {
-        correctAnswers += 1
+            correctAnswers += 1
         }
         
         noButton.isEnabled = false
@@ -90,12 +90,12 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             assertionFailure("Невозможно сохранить результат")
             return ""
         }
-        
+        let accuracy = String(format: "%.2f", statisticService.totalAccuracy)
         let resultMassage = """
         Ваш результат: \(correctAnswers)\\\(questionsAmount)
         Количество сыгранных квизов: \(statisticService.gamesCount)
-        Рекорд: \(bestGame.correct)\\\(bestGame.total) (\(bestGame.date))
-        Средняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))
+        Рекорд: \(bestGame.correct)\\\(bestGame.total) (\(bestGame.date.dateTimeString))
+        Средняя точность: \(accuracy)%
         """
         
         return resultMassage
