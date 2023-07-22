@@ -7,12 +7,12 @@
 import Foundation
 import UIKit
 
-protocol AlertPresentor {
+protocol AlertPresentorProtocol {
     
     func show(alertModel: AlertModel)
 }
 
-final class AlertPresentorImpl {
+final class AlertPresentor: AlertPresentorProtocol {
     private weak var viewController: UIViewController?
     
     init(viewController:UIViewController? = nil) {

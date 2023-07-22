@@ -14,7 +14,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
-    private var alertPresenter: AlertPresentorImpl?
+    private var alertPresenter: AlertPresentorProtocol?
     private var statisticService: StatisticService?
     
     // MARK: - Lifecycle
@@ -26,7 +26,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         super.viewDidLoad()
         
         questionFactory = QuestionFactory(delegate: self)
-        alertPresenter = AlertPresentorImpl(viewController: self)
+        alertPresenter = AlertPresentor(viewController: self)
         statisticService = StatisticServiceImplementation()
         
         questionFactory?.requestNextQuestion()
@@ -92,9 +92,9 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         }
         let accuracy = String(format: "%.2f", statisticService.totalAccuracy)
         let resultMassage = """
-        Ваш результат: \(correctAnswers)\\\(questionsAmount)
+        Ваш результат: \(correctAnswers)/\(questionsAmount)
         Количество сыгранных квизов: \(statisticService.gamesCount)
-        Рекорд: \(bestGame.correct)\\\(bestGame.total) (\(bestGame.date.dateTimeString))
+        Рекорд: \(bestGame.correct)/\(bestGame.total) (\(bestGame.date.dateTimeString))
         Средняя точность: \(accuracy)%
         """
         

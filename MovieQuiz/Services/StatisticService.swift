@@ -92,8 +92,8 @@ final class StatisticServiceImplementation: StatisticService {
     
     
     func store(correct count: Int, total amount: Int) {
-        correct = count
-        total = amount
+        correct += count
+        total += amount
         gamesCount += 1
         
         let date = dateProvider()
