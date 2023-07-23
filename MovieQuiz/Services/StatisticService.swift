@@ -16,8 +16,6 @@ protocol StatisticService {
 
 final class StatisticServiceImplementation: StatisticService {
     
-    
-    
     private enum Keys: String {
         case correct, total, bestGame, gamesCount
     }
@@ -91,9 +89,9 @@ final class StatisticServiceImplementation: StatisticService {
     }
     
     
-    func store(correct count: Int, total amount: Int) {
-        correct += count
-        total += amount
+    func store(correct: Int, total: Int) {
+        self.correct += correct
+        self.total += total
         gamesCount += 1
         
         let date = dateProvider()

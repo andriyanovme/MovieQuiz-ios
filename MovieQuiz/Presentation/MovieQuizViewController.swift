@@ -91,14 +91,14 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             return ""
         }
         let accuracy = String(format: "%.2f", statisticService.totalAccuracy)
-        let resultMassage = """
+        let resultMessage = """
         Ваш результат: \(correctAnswers)/\(questionsAmount)
         Количество сыгранных квизов: \(statisticService.gamesCount)
         Рекорд: \(bestGame.correct)/\(bestGame.total) (\(bestGame.date.dateTimeString))
         Средняя точность: \(accuracy)%
         """
         
-        return resultMassage
+        return resultMessage
     }
     
     private func showNextQuestionOrResults() {
