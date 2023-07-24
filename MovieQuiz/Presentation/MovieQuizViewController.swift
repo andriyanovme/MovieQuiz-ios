@@ -37,17 +37,17 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     //MARK: - Private Function
     
     func didLoadDataFromServer() {
-        activityIndicator.isHidden = true // скрываем индикатор загрузки
+        activityIndicator.isHidden = true
         questionFactory?.requestNextQuestion()
     }
     
     func didFailToLoadData(with error: Error) {
-        showNetworkError(message: error.localizedDescription) // возьмём в качестве сообщения описание ошибки
+        showNetworkError(message: error.localizedDescription)
     }
     
     private func showLoadingIndicator() {
-        activityIndicator.isHidden = false // говорим, что индикатор загрузки не скрыт
-        activityIndicator.startAnimating() // включаем анимацию
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
     }
     
     private func hideLoadingIndicator() {
