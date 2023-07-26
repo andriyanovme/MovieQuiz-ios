@@ -2,7 +2,6 @@
 //  MoviesLoader.swift
 //  MovieQuiz
 //
-//  Created by E on 24.07.2023.
 //
 
 import Foundation
