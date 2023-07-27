@@ -74,9 +74,9 @@ final class StatisticServiceImplementation: StatisticService {
     }
     
     
-    func store(correct count: Int, total amount: Int) {
-        self.correct += count
-        self.total += amount
+    func store(correct: Int, total: Int) {
+        self.correct += correct
+        self.total += total
         gamesCount += 1
         
        

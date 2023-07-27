@@ -11,14 +11,14 @@ import UIKit
 final class MovieQuizPresenter: QuestionFactoryDelegate {
     private let statisticService: StatisticService!
     private var currentQuestion: QuizQuestion?
-    private weak var viewController: MovieQuizViewController?
+    private weak var viewController: MovieQuizViewControllerProtocol?
     private var questionFactory: QuestionFactoryProtocol?
     
     private let questionsAmount: Int = 10
     private var currentQuestionIndex: Int = 0
     private var correctAnswers: Int = 0
     
-    init(viewController: MovieQuizViewController) {
+    init(viewController: MovieQuizViewControllerProtocol) {
         self.viewController = viewController
         
         statisticService = StatisticServiceImplementation()
@@ -102,8 +102,11 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
-    private func showAnswerResult(isCorrect: Bool) {
+    func showAnswerResult(isCorrect: Bool) {
         didAnswer(isCorrectAnswer: isCorrect)
+        
+        viewController?.buttonIsNotAvailible()
+        
         
         viewController?.highlightImageBorder(isCorrectAnswer: isCorrect)
         
@@ -128,6 +131,8 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             self.switchToNextQuestion()
             questionFactory?.requestNextQuestion()
         }
+        
+        viewController?.buttonIsAvailible()
     }
     
     
@@ -136,7 +141,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         
         let bestGame = statisticService.bestGame
         
-        let accuracy = String(format: "%.2f", statisticService.totalAccuracy)
         let resultMessage = """
         Ваш результат: \(correctAnswers)/\(questionsAmount)
         Количество сыгранных квизов: \(statisticService.gamesCount)

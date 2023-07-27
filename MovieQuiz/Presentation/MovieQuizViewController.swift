@@ -1,8 +1,8 @@
 import UIKit
 
 final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
-    @IBOutlet private weak var yesButton: UIButton!
-    @IBOutlet private weak var noButton: UIButton!
+    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var noButton: UIButton!
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
@@ -92,6 +92,15 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         alert.addAction(action)
     }
     
+    func buttonIsNotAvailible(){
+        noButton.isEnabled = false
+        yesButton.isEnabled = false
+    }
+    
+    func buttonIsAvailible(){
+        noButton.isEnabled = true
+        yesButton.isEnabled = true
+    }
 }
 
 
