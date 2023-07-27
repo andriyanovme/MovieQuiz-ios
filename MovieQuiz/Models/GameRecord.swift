@@ -12,17 +12,9 @@ struct GameRecord: Codable {
     let date: Date
 }
 
-extension GameRecord: Comparable {
+extension GameRecord {
     
-    private var accuracy: Double {
-        guard total != 0 else {
-            return 0
-        }
-        
-        return Double(correct) / Double(total)
-    }
-    static func < (Ihs: GameRecord, rhs: GameRecord) -> Bool {
-        Ihs.accuracy < rhs.accuracy
-        
+    func isBetterThan(_ another: GameRecord) -> Bool {
+        correct > another.correct
     }
 }
