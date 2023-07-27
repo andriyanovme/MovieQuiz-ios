@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041826F72A726A42005D388C /* MovieQuizViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041826F62A726A42005D388C /* MovieQuizViewControllerProtocol.swift */; };
 		04336C3F2A4347C4001BF43B /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04336C3D2A4347C4001BF43B /* YS Display-Bold.ttf */; };
 		04336C402A4347C4001BF43B /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04336C3E2A4347C4001BF43B /* YS Display-Medium.ttf */; };
 		04B43B632A658C61006D3AED /* StatisticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B43B622A658C61006D3AED /* StatisticService.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041826F62A726A42005D388C /* MovieQuizViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieQuizViewControllerProtocol.swift; sourceTree = "<group>"; };
 		04336C3D2A4347C4001BF43B /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		04336C3E2A4347C4001BF43B /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 		04B43B622A658C61006D3AED /* StatisticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticService.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				04B43B622A658C61006D3AED /* StatisticService.swift */,
 				04CFDDC52A6EA5780001AD17 /* NetworkClient.swift */,
 				04CFDDC92A6EA9600001AD17 /* MoviesLoader.swift */,
+				041826F62A726A42005D388C /* MovieQuizViewControllerProtocol.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				04B985DA2A5C77F1007D9053 /* AlertPresenter.swift in Sources */,
 				04B985CC2A5C646A007D9053 /* AlertModel.swift in Sources */,
 				04CFDDC82A6EA8C00001AD17 /* MostPopularMovies.swift in Sources */,
+				041826F72A726A42005D388C /* MovieQuizViewControllerProtocol.swift in Sources */,
 				AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */,
 				04B43B652A65932F006D3AED /* GameRecord.swift in Sources */,
 				04B985C82A5C4A60007D9053 /* QuestionFactoryProtocol.swift in Sources */,
