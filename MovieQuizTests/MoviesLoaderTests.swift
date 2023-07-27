@@ -6,22 +6,23 @@
 
 import Foundation
 
-import XCTest // не забывайте импортировать фреймворк для тестирования
-@testable import MovieQuiz // импортируем приложение для тестирования
+import XCTest
+@testable import MovieQuiz
 
 class MoviesLoaderTests: XCTestCase {
     func testSuccessLoading() throws {
-        
-        let stubNetworkClient = StubNetworkClient(emulateError: false)
+        // Given
+        let stubNetworkClient = StubNetworkClient(emulateError: false) // говорим, что не хотим эмулировать ошибку
         let loader = MoviesLoader(networkClient: stubNetworkClient)
         
+        // When
         let expectation = expectation(description: "Loading expectation")
         
         loader.loadMovies { result in
-            
+            // Then
             switch result {
             case .success(let movies):
-                
+                // давайте проверим, что пришло, например, два фильма — ведь в тестовых данных их всего два
                 XCTAssertEqual(movies.items.count, 2)
                 expectation.fulfill()
             case .failure(_):
@@ -33,7 +34,7 @@ class MoviesLoaderTests: XCTestCase {
     }
     
     func testFailureLoading() throws {
-        
+        // Given
         let stubNetworkClient = StubNetworkClient(emulateError: true) // говорим, что хотим эмулировать ошибку
         let loader = MoviesLoader(networkClient: stubNetworkClient)
         
@@ -58,7 +59,7 @@ class MoviesLoaderTests: XCTestCase {
 struct StubNetworkClient: NetworkRouting {
     
     enum TestError: Error { // тестовая ошибка
-    case test
+        case test
     }
     
     let emulateError: Bool // этот параметр нужен, чтобы заглушка эмулировала либо ошибку сети, либо успешный ответ

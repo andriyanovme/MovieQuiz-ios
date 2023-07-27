@@ -2,7 +2,6 @@
 //  MovieQuizPresenter.swift
 //  MovieQuiz
 //
-
 //
 
 import Foundation
@@ -52,11 +51,11 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
-    func isLastQuestion() -> Bool {
+    private func isLastQuestion() -> Bool {
         currentQuestionIndex == questionsAmount - 1
     }
     
-    func didAnswer(isCorrectAnswer: Bool) {
+    private func didAnswer(isCorrectAnswer: Bool) {
         if isCorrectAnswer {
             correctAnswers += 1
         }
@@ -68,7 +67,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         questionFactory?.requestNextQuestion()
     }
     
-    func switchToNextQuestion() {
+    private func switchToNextQuestion() {
         currentQuestionIndex += 1
     }
     
@@ -80,7 +79,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         )
     }
     
-    func resetQuestionIndex() {
+    private func resetQuestionIndex() {
         currentQuestionIndex = 0
     }
     
@@ -102,11 +101,10 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
-    func showAnswerResult(isCorrect: Bool) {
+    private func showAnswerResult(isCorrect: Bool) {
         didAnswer(isCorrectAnswer: isCorrect)
         
         viewController?.buttonIsNotAvailible()
-        
         
         viewController?.highlightImageBorder(isCorrectAnswer: isCorrect)
         
@@ -116,7 +114,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
-    func showNextQuestionOrResults() {
+    private func showNextQuestionOrResults() {
         if self.isLastQuestion() {
             let text = correctAnswers == self.questionsAmount ?
             "Поздравляем, вы ответили на 10 из 10!" :
