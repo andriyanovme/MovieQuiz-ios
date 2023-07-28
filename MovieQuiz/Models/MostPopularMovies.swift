@@ -21,7 +21,6 @@ struct MostPopularMovie: Codable {
 
         let imageUrlString = urlString.components(separatedBy: "._")[0] + "._V0_UX600_.jpg"
             
-
         guard let newURL = URL(string: imageUrlString) else {
             return imageURL
         }

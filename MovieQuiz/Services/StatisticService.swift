@@ -9,35 +9,20 @@ import Foundation
 protocol StatisticService {
     var totalAccuracy: Double { get }
     var gamesCount: Int { get }
-    var bestGame: GameRecord? { get }
+    var bestGame: GameRecord { get }
     
     func store(correct count: Int, total amount: Int)
 }
 
 final class StatisticServiceImplementation: StatisticService {
-    
     private enum Keys: String {
         case correct, total, bestGame, gamesCount
     }
     
-    private let userDefaults: UserDefaults
-    private let decoder: JSONDecoder
-    private let encoder: JSONEncoder
-    private let dateProvider: () -> Date
+    private let userDefaults =  UserDefaults.standard
     
-    init(
-        userDefaults: UserDefaults = .standard,
-        decoder: JSONDecoder = JSONDecoder(),
-        encoder: JSONEncoder = JSONEncoder(),
-        dateProvider: @escaping () -> Date = { Date() }
-    ) {
-        self.userDefaults = userDefaults
-        self.encoder = encoder
-        self.decoder = decoder
-        self.dateProvider = dateProvider
-    }
     
-    var total: Int {
+    private(set) var total: Int {
         get {
             userDefaults.integer(forKey: Keys.total.rawValue)
         }
@@ -46,7 +31,7 @@ final class StatisticServiceImplementation: StatisticService {
         }
     }
     
-    var correct: Int {
+    private var correct: Int {
         get {
             userDefaults.integer(forKey: Keys.correct.rawValue)
         }
@@ -55,7 +40,7 @@ final class StatisticServiceImplementation: StatisticService {
         }
     }
     
-    var gamesCount: Int {
+    private(set) var gamesCount: Int {
         get {
             userDefaults.integer(forKey: Keys.gamesCount.rawValue)
         }
@@ -64,7 +49,7 @@ final class StatisticServiceImplementation: StatisticService {
         }
     }
     
-    var bestGame: GameRecord? {
+    private(set) var bestGame: GameRecord {
         get {
             guard let data = userDefaults.data(forKey: Keys.bestGame.rawValue),
             let record = try? JSONDecoder().decode(GameRecord.self, from: data) else {
@@ -94,15 +79,13 @@ final class StatisticServiceImplementation: StatisticService {
         self.total += total
         gamesCount += 1
         
-        let date = dateProvider()
-        let currentBestGame = GameRecord(correct: correct, total: total, date: date)
+       
+        let currentBestGame = GameRecord(correct: correct, total: total, date: Date())
         
-        if let previousBestGame = bestGame {
-            if currentBestGame.correct > previousBestGame.correct {
-                bestGame = currentBestGame
-            }
-        } else {
+    
+        if currentBestGame.isBetterThan(bestGame) {
             bestGame = currentBestGame
         }
+        
     }
 }
